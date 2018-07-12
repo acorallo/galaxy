@@ -16,8 +16,6 @@ namespace Galaxy.Console
             Planet Ferengi_180 = new Planet(179);
             Planet Ferengi_270 = new Planet(270);
             Planet Ferengi_0 = new Planet(0);
-
-
         }
     }
 }
