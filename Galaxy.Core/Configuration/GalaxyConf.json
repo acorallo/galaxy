@@ -1,27 +1,24 @@
-﻿{
-  "galaxy": {
-    "Planets": [
-      {
-        "Name": "Ferengi",
-        "SunDistance": 500,
-        "InitialPosition": 0,
-        "AngularStepDay": 1,
-        "clockwise": true
-      },
-      {
-        "Name": "Betasoide",
-        "SunDistance": 2000,
-        "InitialPosition": 0,
-        "AngularStepDay": 3,
-        "clockwise": true
-      },
-      {
-        "Name": "Vulcano",
-        "SunDistance": 1000,
-        "InitialPosition": 0,
-        "AngularStepDay": 5,
-        "clockwise": false
-      }
-    ]
-  }
-}
+﻿ [
+    {
+      "Name": "Ferengi",
+      "SunDistance": 500,
+      "InitialPosition": 0,
+      "AngularStepDay": 1,
+      "Clockwise": true
+    },
+    {
+      "Name": "Betasoide",
+      "SunDistance": 2000,
+      "InitialPosition": 0,
+      "AngularStepDay": 3,
+      "Clockwise": true
+    },
+    {
+      "Name": "Vulcano",
+      "SunDistance": 1000,
+      "InitialPosition": 0,
+      "AngularStepDay": 5,
+      "Clockwise": false
+    }
+  ]
+

@@ -24,6 +24,8 @@ namespace Galaxy.Core.Models
             this.MaxTrianglePerimeterDay = Constants.NULL_DAY;
         }
 
+        
+
         public void CountPeriod(Wheather weatherType)
         {
             switch (weatherType)

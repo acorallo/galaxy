@@ -211,10 +211,10 @@ namespace Galaxy.Core.Models
 
 
         /// <summary>
-        /// Determina que tipo de clima tiene la galaxia.
+        /// Determina que tipo de clima tiene actualmente la galaxia
         /// </summary>
         /// <returns></returns>
-        private Wheather GetWheather()
+        public Wheather GetWheather()
         {
             Wheather result = Wheather.Normal;
 
