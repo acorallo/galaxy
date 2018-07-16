@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Galaxy.Core.Models
 {
-    public class Sun : Start
+    public class Sun : Star
     {
-        public Sun ()
+        public Sun () : base ("Sun")
         {
             // Establece los valores cartesianos de X e Y en cero ya que el sol es el centro de la galaxia.
             this.x = 0;

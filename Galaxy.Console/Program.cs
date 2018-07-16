@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.Models;
+using Galaxy.Core.Common;
 
 namespace Galaxy.Console
 {
@@ -11,11 +12,13 @@ namespace Galaxy.Console
     {
         static void Main(string[] args)
         {
-            Planet Ferengi_90 = new Planet(90);
-            Planet Ferengi_120 = new Planet(120);
-            Planet Ferengi_180 = new Planet(179);
-            Planet Ferengi_270 = new Planet(270);
-            Planet Ferengi_0 = new Planet(0);
+
+            var myGalaxy = new Galaxy.Core.Models.Galaxy(new PlanetsSetup());
+            var information = myGalaxy.Simulate(365*10);
+
+            int a = 10;
+
         }
     }
 }
+    
