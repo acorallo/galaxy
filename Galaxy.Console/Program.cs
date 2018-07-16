@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.Models;
 using Galaxy.Core.Common;
+using Galaxy.Core.Configuration;
 
 namespace Galaxy.Console
 {
@@ -14,7 +15,7 @@ namespace Galaxy.Console
         {
 
             var myGalaxy = new Galaxy.Core.Models.Galaxy(new PlanetsSetup());
-            var information = myGalaxy.Simulate(365*10);
+            var information = myGalaxy.Simulate(365);
 
             int a = 10;
 

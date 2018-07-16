@@ -111,7 +111,15 @@ namespace Galaxy.Core.Models
             {
                 var p1 = this.Planets[0];
                 var p2 = this.Planets[1];
-                var refSlope = getGradientFromTwoPoints(p1.x, p2.x, p1.y, p2.y);
+
+                var p1Clone = (Planet)this.Planets[0].Clone();
+                var p2Clone = (Planet)this.Planets[1].Clone();
+                p1Clone.AddDay();
+                p2Clone.AddDay();
+
+                var minGradient = getGradientFromTwoPoints(p1.x, p2.x, p1.y, p2.y);
+                var maxGradient = getGradientFromTwoPoints(p1Clone.x, p2Clone.x, p1Clone.y, p2Clone.y);
+
                 int count = 1;
                 bool flag = true;
 
@@ -120,7 +128,10 @@ namespace Galaxy.Core.Models
                     var pn0 = this.Planets[count];
                     var pn1 = this.Planets[count+1];
 
-                    flag = refSlope == getGradientFromTwoPoints(pn0.x, pn1.x, pn0.y, pn1.y);
+                    var currentGradient = getGradientFromTwoPoints(pn0.x, pn1.x, pn0.y, pn1.y);
+
+                    flag = currentGradient >= minGradient && currentGradient <= maxGradient; 
+
                     count++;
                 }
 
@@ -182,9 +193,11 @@ namespace Galaxy.Core.Models
             while (counter<=days)
             {
                 resultInformation.CountPeriod(lastwheather);
-                Wheather Currentwheather = this.GetWheather();
+                //Wheather Currentwheather = this.GetWheather();
                 while (counter <= days && lastwheather==this.GetWheather())
                 {
+                    this.EvaluateGeometric(resultInformation, counter);
+
                     this.AddDay();
                     counter++;
                 }
@@ -194,6 +207,8 @@ namespace Galaxy.Core.Models
             
             return resultInformation;
         }
+
+
 
         /// <summary>
         /// Determina que tipo de clima tiene la galaxia.
@@ -224,6 +239,20 @@ namespace Galaxy.Core.Models
              }         
 
             return result;
+        }
+
+        private void EvaluateGeometric(SimulateInformation simulateInformation, int currentDay)
+        {
+            if(this.GetWheather()==Wheather.Rains)
+            {
+                var currentPerimeter = this.GeometricPerimeter();
+                if (currentPerimeter > simulateInformation.TrianglePerimeter)
+                {
+                    simulateInformation.TrianglePerimeter = currentPerimeter;
+                    simulateInformation.MaxTrianglePerimeterDay = currentDay;
+                }
+            }
+
         }
         
     }

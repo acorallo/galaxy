@@ -7,10 +7,15 @@ namespace Galaxy.Core.Common
     class Constants
     {
 
+        // Configuration 
+        public const string GALAXY_CONFIGURATION_FILE_NAME = "GeometricConf.json";
+
         public const double RADIAN_UNIT = 180.0;
         public const double QUADRANT_UNIT = 90.0;
         public const int RADIAN = 360;
 
+        public const int NULL_DAY = -1;
+        
         // Posicion inicial de los planetas.
         public static readonly string FERENGI_NAME = "Ferengi";
         public static readonly int FERENGI_SUN_DISTANCE = 500;

@@ -6,9 +6,11 @@ using Galaxy.Core.Exceptions;
 
 namespace Galaxy.Core.Models
 {
-    public class Planet : Star
+    public class Planet : Star, ICloneable
     {
         
+
+
         #region Properties
         
         /// <summary>
@@ -125,6 +127,15 @@ namespace Galaxy.Core.Models
         {
             if (age < 0)
                 throw new AgeException();
+        }
+
+        public object Clone()
+        {
+            var clone = new Planet(this.Name, this.AngularPosition, this.AngularStep, this.SunDistance, this.ClockWise);
+            clone._age = this._age;
+            return clone;
+            
+
         }
 
         #endregion Validations

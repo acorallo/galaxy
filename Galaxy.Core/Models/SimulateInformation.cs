@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Galaxy.Core.Common;
 
 namespace Galaxy.Core.Models
 {
     public class SimulateInformation
     {
+
+        public double TrianglePerimeter { get; set; }
+        public int MaxTrianglePerimeterDay { get; set; }
+
         public int DroughtPeriods { get; set; }
         public int BestPeriods { get; set; }
         public int RainsPeriod { get; set; }
@@ -14,7 +19,9 @@ namespace Galaxy.Core.Models
         {
             this.DroughtPeriods = 0;
             this.BestPeriods = 0;
-            this.RainsPeriod = 0;            
+            this.RainsPeriod = 0;
+            this.TrianglePerimeter = Double.MinValue;
+            this.MaxTrianglePerimeterDay = Constants.NULL_DAY;
         }
 
         public void CountPeriod(Wheather weatherType)
