@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Galaxy.Core\Galaxy.Core.csproj">
-      <Project>{b528cfa9-9795-4f47-90c4-b8ed17e99041}</Project>
+      <Project>{024cc574-3d4d-48f6-8a26-8a58621c2797}</Project>
       <Name>Galaxy.Core</Name>
     </ProjectReference>
   </ItemGroup>

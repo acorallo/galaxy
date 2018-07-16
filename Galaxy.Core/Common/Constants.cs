@@ -8,7 +8,7 @@ namespace Galaxy.Core.Common
     {
 
         // Configuration 
-        public const string GALAXY_CONFIGURATION_FILE_NAME = "GeometricConf.json";
+        public const string GALAXY_CONFIGURATION_FILE_NAME = "GalaxyConf.json";
 
         public const double RADIAN_UNIT = 180.0;
         public const double QUADRANT_UNIT = 90.0;

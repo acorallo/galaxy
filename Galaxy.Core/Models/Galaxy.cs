@@ -193,7 +193,7 @@ namespace Galaxy.Core.Models
             while (counter<=days)
             {
                 resultInformation.CountPeriod(lastwheather);
-                //Wheather Currentwheather = this.GetWheather();
+                
                 while (counter <= days && lastwheather==this.GetWheather())
                 {
                     this.EvaluateGeometric(resultInformation, counter);
