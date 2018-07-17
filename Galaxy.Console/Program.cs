@@ -15,7 +15,7 @@ namespace Galaxy.Console
         static void Main(string[] args)
         {
             var myGalaxy = new Galaxy.Core.Models.Galaxy(new PlanetsSetup());            
-            var information = myGalaxy.Simulate(365*10);
+            var information = myGalaxy.Simulate(50);
             ShowInfomation(information);
 
             System.Console.WriteLine(String.Empty);
@@ -26,7 +26,6 @@ namespace Galaxy.Console
         static void ShowInfomation(SimulateInformation information)
         {
             System.Console.WriteLine("Informacion de la Galaxia:");
-            System.Console.WriteLine("Nota: La información son cantidad de periodos no días");
             System.Console.WriteLine(String.Empty);
             System.Console.WriteLine("Periodos de Sequedad: {0}", information.DroughtPeriods);
             System.Console.WriteLine("Periodos de lluvia: {0}, alcanzando un pico máximo el día {1}", information.RainsPeriod, information.MaxTrianglePerimeterDay);
