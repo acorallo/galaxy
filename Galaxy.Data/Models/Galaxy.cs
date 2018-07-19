@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Galaxy.Core.Common;
 using Galaxy.Core.Contracts;
-using GalaxyData = Galaxy.Data;
 
 namespace Galaxy.Core.Models
 {
-    
+
+
     /// <summary>
     /// Especificacion de los tipos de clima.
     /// Draught: Todos lo planetas estan alineado entre si y con el sol (centro del sistema)
@@ -182,87 +182,33 @@ namespace Galaxy.Core.Models
             return (y2 - y1) / (x2 - x1);
         }
 
-        private void PersistDay(GalaxyData.GalaxyDal galaxyDal, int day)
-        {
-            var galaxyDataModel = new GalaxyData.Datamodels.GalaxyDataModel();
-            galaxyDataModel.Day = day;
-            galaxyDataModel.Weather = this.GetWheather().ToString();
-            galaxyDataModel.Perimeter = this.GeometricPerimeter();
-            galaxyDataModel.SunIn = this.Geometric.IsCenterInside();
-
-            galaxyDal.PersistWeather(galaxyDataModel);
-        }
 
         public SimulateInformation Simulate(int days)
         {
-            var resultInformation = new SimulateInformation();
-            var galaxyDal = new GalaxyData.GalaxyDal();
+            SimulateInformation resultInformation = new SimulateInformation();
 
-            try
+            Wheather lastwheather = this.GetWheather();
+            
+            int counter = 1;
+            while (counter<=days)
             {
-
-                galaxyDal.OpenConnection();
-                galaxyDal.DeleteAllWeather();
-
-                Wheather lastwheather = this.GetWheather();
-
-                int counter = 1;
-                while (counter <= days)
+                resultInformation.CountPeriod(lastwheather);
+                
+                while (counter <= days && lastwheather==this.GetWheather())
                 {
-                    resultInformation.CountPeriod(lastwheather);
+                    this.EvaluateGeometric(resultInformation, counter);
 
-                    while (counter <= days && lastwheather == this.GetWheather())
-                    {
-                        this.EvaluateGeometric(resultInformation, counter);
-                        PersistDay(galaxyDal, counter);
-                        this.AddDay();
-                        counter++;
-                    }
-
-                    lastwheather = this.GetWheather();
+                    this.AddDay();
+                    counter++;
                 }
-            }catch(Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                galaxyDal.ClosConnection();
+
+                lastwheather = this.GetWheather();
             }
             
-
             return resultInformation;
         }
 
-        public static bool RunNextDay(IGalaxySetup galaxySetup)
-        {
-            bool result = false;
 
-            var galaxyDal = new GalaxyData.GalaxyDal();
-
-            try
-            {
-                galaxyDal.OpenConnection();
-                int lastDay = galaxyDal.GetLastProcecedDay();
-                int nextDay = lastDay == GalaxyData.GalaxyDal.NULL_INT ? 0 : lastDay +1;
-
-                var galaxy = new Galaxy(galaxySetup);
-                galaxy.SetAge(nextDay);
-                galaxy.PersistDay(galaxyDal, nextDay);
-
-                result = true;
-
-            }catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                galaxyDal.ClosConnection();
-            }
-
-            return result;
-        }
 
         /// <summary>
         /// Determina que tipo de clima tiene actualmente la galaxia

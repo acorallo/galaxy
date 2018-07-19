@@ -44,7 +44,6 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\GeometricFactory.cs" />
     <Compile Include="Common\Triangle.cs" />
-    <Compile Include="Configuration\Galaxy.cs" />
     <Compile Include="Configuration\JavaScriptSerializerExtensions.cs" />
     <Compile Include="Configuration\Planet.cs" />
     <Compile Include="Configuration\PlanetsSetup.cs" />
@@ -62,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Configuration\GalaxyConf.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Galaxy.Data\Galaxy.Data.csproj">
+      <Project>{11575f26-0ac7-4029-81a7-892396ee9cb2}</Project>
+      <Name>Galaxy.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
