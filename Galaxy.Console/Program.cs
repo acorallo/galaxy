@@ -63,7 +63,10 @@ namespace Galaxy.Console
             System.Console.WriteLine("Informacion de la Galaxia:");
             System.Console.WriteLine(String.Empty);
             System.Console.WriteLine("Periodos de Sequedad: {0}", information.DroughtPeriods);
-            System.Console.WriteLine("Periodos de lluvia: {0}, alcanzando un pico máximo el día {1}", information.RainsPeriod, information.MaxTrianglePerimeterDay);
+            System.Console.Write("Periodos de lluvia: {0}", information.RainsPeriod);
+            if (information.MaxTrianglePerimeterDay != SimulateInformation.NO_AVAILABLE)
+                System.Console.Write(", alcanzando un pico máximo el día {0}", information.MaxTrianglePerimeterDay);
+            System.Console.WriteLine(string.Empty);
             System.Console.WriteLine("Periodos de Presión y Temperatura Optima: {0}", information.BestPeriods);
         }
 

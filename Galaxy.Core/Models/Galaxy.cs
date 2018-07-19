@@ -181,7 +181,12 @@ namespace Galaxy.Core.Models
 
             return (y2 - y1) / (x2 - x1);
         }
-
+        
+        /// <summary>
+        /// Persiste los datos del dia en la base datos
+        /// </summary>
+        /// <param name="galaxyDal"></param>
+        /// <param name="day"></param>
         private void PersistDay(GalaxyData.GalaxyDal galaxyDal, int day)
         {
             var galaxyDataModel = new GalaxyData.Datamodels.GalaxyDataModel();
@@ -193,6 +198,12 @@ namespace Galaxy.Core.Models
             galaxyDal.PersistWeather(galaxyDataModel);
         }
 
+        /// <summary>
+        /// Hace la simulacion de los dias especificados por parametro y persiste en la base de datos.
+        /// Previamente borra todos los datos existentes.
+        /// </summary>
+        /// <param name="days">Contidad de dias que se simularan</param>
+        /// <returns></returns>
         public SimulateInformation Simulate(int days)
         {
             var resultInformation = new SimulateInformation();
@@ -234,6 +245,11 @@ namespace Galaxy.Core.Models
             return resultInformation;
         }
 
+        /// <summary>
+        /// Simular un día posterior al ultimo almacenado en la base. Este comando se debería llamar desde un job.
+        /// </summary>
+        /// <param name="galaxySetup"></param>
+        /// <returns></returns>
         public static bool RunNextDay(IGalaxySetup galaxySetup)
         {
             bool result = false;
