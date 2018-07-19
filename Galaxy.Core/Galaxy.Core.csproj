@@ -60,7 +60,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configuration\GalaxyConf.json" />
+    <None Include="Configuration\GalaxyConf.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Galaxy.Data\Galaxy.Data.csproj">

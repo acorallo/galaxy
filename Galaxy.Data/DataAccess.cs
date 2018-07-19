@@ -12,9 +12,9 @@ namespace Galaxy.Data
     public abstract class DataAccess : IDisposable
     {
         
-        private const string DB_FILENAME = "galaxia.mdf";
+        private const string DB_FILENAME = @"galaxia.mdf";
         private static readonly string AttachedDbFileName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DB_FILENAME);
-        private static readonly string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Personal\Galaxy\Galaxy.Data\galaxia.mdf;Integrated Security=True";
+        private static readonly string ConnectionString = string.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True", AttachedDbFileName);
         
 
 
@@ -44,7 +44,7 @@ namespace Galaxy.Data
             
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.ClosConnection();
         }
 
         public IDbCommand getCommand()

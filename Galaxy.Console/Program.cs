@@ -17,8 +17,15 @@ namespace Galaxy.Console
 
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Ejecutando Galaxia ...");
-            ExcecuteParameters(args);
+
+            try
+            {
+                System.Console.WriteLine("Ejecutando Galaxia ...");
+                ExcecuteParameters(args);
+            }catch(Exception ex)
+            {
+                ShowErrors(ex);
+            }
             
         }
 
@@ -44,7 +51,7 @@ namespace Galaxy.Console
             }
         }
         
-        private void ShowErrors(Exception ex)
+        private static void ShowErrors(Exception ex)
         {
             System.Console.WriteLine("El programa se ha terminado de ejecutar con errors:");
             System.Console.WriteLine(string.Format("Mensaje de error: {0}", ex.Message));

@@ -238,27 +238,30 @@ namespace Galaxy.Core.Models
         {
             bool result = false;
 
-            var galaxyDal = new GalaxyData.GalaxyDal();
-
-            try
+            using (var galaxyDal = new GalaxyData.GalaxyDal())
             {
-                galaxyDal.OpenConnection();
-                int lastDay = galaxyDal.GetLastProcecedDay();
-                int nextDay = lastDay == GalaxyData.GalaxyDal.NULL_INT ? 0 : lastDay +1;
 
-                var galaxy = new Galaxy(galaxySetup);
-                galaxy.SetAge(nextDay);
-                galaxy.PersistDay(galaxyDal, nextDay);
+                try
+                {
+                    galaxyDal.OpenConnection();
+                    int lastDay = galaxyDal.GetLastProcecedDay();
+                    int nextDay = lastDay == GalaxyData.GalaxyDal.NULL_INT ? 0 : lastDay + 1;
 
-                result = true;
+                    var galaxy = new Galaxy(galaxySetup);
+                    galaxy.SetAge(nextDay);
+                    galaxy.PersistDay(galaxyDal, nextDay);
 
-            }catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                galaxyDal.ClosConnection();
+                    result = true;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    galaxyDal.ClosConnection();
+                }
             }
 
             return result;
