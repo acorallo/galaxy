@@ -18,7 +18,6 @@ namespace Galaxy.WebApi.Controllers
 
             try
             {
-
                 if (id < 0)
                     throw new DayParameterNotNegative();
 
